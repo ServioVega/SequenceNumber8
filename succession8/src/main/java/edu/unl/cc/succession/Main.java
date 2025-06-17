@@ -1,12 +1,10 @@
 package edu.unl.cc.succession;
 
+import edu.unl.cc.succession.business.PrimeCubeCalculator;
+
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-
-
 
     private int readOptionsMenu(Scanner sc){
         int opcion;
@@ -26,11 +24,23 @@ public class Main {
         return opcion;
     }
 
-
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner sc = new Scanner(System.in);
+        Main menu = new Main();
+        int opcion = menu.readOptionsMenu(sc);
 
+        switch (opcion) {
+            case 8:
+                System.out.println("Ingrese el número de términos para la serie:");
+                int n = sc.nextInt();
+                PrimeCubeCalculator calculator = new PrimeCubeCalculator(n);
+                Number resultado = calculator.calculate();
+                System.out.println(calculator.print());
+                System.out.println("El resultado de la serie es: " + resultado);
+                break;
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
     }
 }
